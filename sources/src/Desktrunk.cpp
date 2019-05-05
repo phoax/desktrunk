@@ -186,6 +186,9 @@ void Desktrunk::turnOffStepper() {
   digitalWrite(_stepperIN4, LOW);
 }
 
+/**
+ * Led turn on when start
+ */
 void Desktrunk::ledStart() {
   digitalWrite(_ledBlue, HIGH);
   delay(500);
@@ -207,12 +210,18 @@ void Desktrunk::ledStart() {
   digitalWrite(_ledBlue, LOW);
 }
 
+/**
+ * Led turn on when error
+ */
 void Desktrunk::ledError() {
   digitalWrite(_ledRed, HIGH);
   delay(2000);
   digitalWrite(_ledRed, LOW);
 }
 
+/**
+ * Led turn on when success
+ */
 void Desktrunk::ledSuccess() {
   digitalWrite(_ledGreen, HIGH);
   delay(2000);
