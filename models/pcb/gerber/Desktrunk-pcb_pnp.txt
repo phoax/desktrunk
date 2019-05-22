@@ -1,0 +1,66 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=Desktrunk-pcb
+*Date=22:16:10
+*CreatedBy=Fritzing 0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;57.19;-15.9092;0;Bottom;TXT1
+2;;;12.6139;-8.28644;-90;Bottom;TXT1
+3;;THT;26.9045;-4.41873;90;Bottom;PN532-GPIO
+4;;;2.99757;-21.5407;-90;Bottom;TXT1
+5;;;23.0911;-8.03205;-90;Bottom;TXT1
+6;;;40.0946;-9.41877;0;Bottom;Hole6
+7;;;57.4435;-7.95507;0;Bottom;TXT1
+8;;;30.7227;-8.68447;-90;Bottom;TXT1
+9;;THT;53.3646;-4.41873;90;Bottom;PN532-PWR
+10;220;THT;44.0145;-33.4187;0;Bottom;R-LED-B
+11;;;57.4756;-10.5168;0;Bottom;TXT1
+12;;;24.6639;-20.8361;0;Bottom;TXT1
+13;;;57.5976;-35.78;0;Bottom;TXT1
+14;;;28.2653;-8.54392;-90;Bottom;TXT1
+15;220;THT;44.1746;-17.4187;0;Bottom;R-BUTTON
+16;;;3.09465;-40.4187;0;Bottom;Hole9
+17;;;63.0945;-40.4187;0;Bottom;Hole12
+18;;THT;21.0947;-24.6087;180;Bottom;ESP32-USB
+19;;THT;45.3647;-4.41873;90;Bottom;ULN2003-PWR
+20;220;THT;44.0145;-29.4187;0;Bottom;R-LED-G
+21;;THT;37.3645;-4.41873;90;Bottom;BUTTON
+22;;THT;29.9548;-37.696;90;Bottom;ESP32-2
+23;;;40.0946;-40.4132;0;Bottom;Hole7
+24;;;63.0945;-3.41873;0;Bottom;Hole13
+25;;;57.6255;-33.4441;0;Bottom;TXT1
+26;;;56.4457;-18.4182;0;Bottom;TXT1
+27;;;3.09465;-3.41873;0;Bottom;Hole8
+28;;;25.4064;-25.8541;0;Bottom;TXT1
+29;;;25.51;-8.42106;-90;Bottom;TXT1
+30;;;46.6984;-8.29236;-90;Bottom;TXT1
+31;;;56.3554;-21.0228;0;Bottom;TXT1
+32;220;THT;44.0145;-25.4187;0;Bottom;R-LED-R
+33;;;25.3037;-23.299;0;Bottom;TXT1
+34;;THT;61.0946;-19.6087;180;Bottom;USB
+35;;;17.8909;-8.34994;-90;Bottom;TXT1
+36;;;54.6003;-8.41993;-90;Bottom;TXT1
+37;;;13.8518;-9.41877;0;Bottom;Hole10
+38;;;57.0384;-23.4855;0;Bottom;TXT1
+39;;;13.8518;-40.4187;0;Bottom;Hole11
+40;;THT;61.0946;-9.14877;180;Bottom;ON/OFF
+41;;;57.0387;-30.7484;0;Bottom;TXT1
+42;;THT;13.9045;-4.41873;90;Bottom;ULN2003-GPIO
+43;;;15.2239;-8.28051;-90;Bottom;TXT1
+44;;;24.7935;-28.2983;0;Bottom;TXT1
+45;;;57.6292;-28.1331;0;Bottom;TXT1
+46;;;44.146;-8.28926;-90;Bottom;TXT1
+47;;;10.1354;-8.36659;-90;Bottom;TXT1
+48;;;38.6935;-8.2077;-90;Bottom;TXT1
+49;;THT;30.4145;-12.4187;90;Bottom;ESP32-1
+50;;THT;61.0946;-32.2287;0;Bottom;LED-RGB
+51;;;52.0383;-8.3711;-90;Bottom;TXT1
