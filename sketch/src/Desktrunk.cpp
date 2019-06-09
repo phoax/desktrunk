@@ -9,7 +9,7 @@
 #define EEPROM_SIZE 64
 #define EEPROM_ADDRESS 0
 
-int step = 2600;
+int step = 2800;
 int stepOpen;
 int stepClose;
 
@@ -84,9 +84,11 @@ void Desktrunk::setLed(int red, int green, int blue) {
  */
 void Desktrunk::check() {
   if (trunk.closing) {
+    Serial.println("check is closing");
     closeTrunk();
   }
   if (trunk.opening) {
+    Serial.println("check is opening");
     openTrunk();
   }
 }

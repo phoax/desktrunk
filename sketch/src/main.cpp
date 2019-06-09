@@ -7,7 +7,7 @@
 
 const char * secret = "sesame";
 
-#define INTERRUPT_PIN (1)
+#define INTERRUPT_PIN (21)
 
 #define STEPPER_IN1 (15)
 #define STEPPER_IN2 (2)
@@ -39,8 +39,8 @@ void nfcCallback(){
         Serial.println("Access granted");
         desktrunk.openingTrunk();
       } else {
-        Serial.println("Already opened");
-        desktrunk.ledSuccess();
+        Serial.println("Access granted");
+        desktrunk.closingTrunk();
       }
     }
   }
@@ -79,4 +79,7 @@ void setup(void) {
 void loop(void) {
   nfcCallback();
   desktrunk.check();
+  
+
+  
 }
