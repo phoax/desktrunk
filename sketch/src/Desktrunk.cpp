@@ -9,26 +9,32 @@
 #define EEPROM_SIZE 64
 #define EEPROM_ADDRESS 0
 
-int step = 2800;
+int step = 3000;
 int stepOpen;
 int stepClose;
 
 /**
  * Init desktrunk
  */
-void Desktrunk::init () {
-	if (!EEPROM.begin(EEPROM_SIZE)) {
-    Serial.println("failed to initialise EEPROM"); delay(1000000);
+void Desktrunk::init()
+{
+  if (!EEPROM.begin(EEPROM_SIZE))
+  {
+    Serial.println("failed to initialise EEPROM");
+    delay(1000000);
   }
 
   int trunkStatus = EEPROM.read(EEPROM_ADDRESS);
-  if (trunkStatus == 1) {
+  if (trunkStatus == 1)
+  {
     Serial.println("Trunk close");
     trunk.opened = false;
     trunk.closed = true;
     stepClose = 0;
     stepOpen = step;
-  } else {
+  }
+  else
+  {
     Serial.println("Trunk open");
     trunk.opened = true;
     trunk.closed = false;
@@ -41,7 +47,8 @@ void Desktrunk::init () {
  * Set secret password
  * @param secret Secret password
  */
-void Desktrunk::setSecret(const char * secret) {
+void Desktrunk::setSecret(const char *secret)
+{
   _secret = secret;
 }
 
@@ -49,7 +56,8 @@ void Desktrunk::setSecret(const char * secret) {
  * Get secret password
  * @returns _secret Secret password
  */
-const char * Desktrunk::getSecret() {
+const char *Desktrunk::getSecret()
+{
   return _secret;
 }
 
@@ -57,7 +65,8 @@ const char * Desktrunk::getSecret() {
  * Set stepper
  * @param IN1, IN2, IN3, IN4, Pins of the stepper
  */
-void Desktrunk::setStepper(int IN1, int IN2, int IN3, int IN4) {
+void Desktrunk::setStepper(int IN1, int IN2, int IN3, int IN4)
+{
   _stepperIN1 = IN1;
   _stepperIN2 = IN2;
   _stepperIN3 = IN3;
@@ -70,7 +79,8 @@ void Desktrunk::setStepper(int IN1, int IN2, int IN3, int IN4) {
  * Set led
  * @param red, green, blue, Pins of the stepper
  */
-void Desktrunk::setLed(int red, int green, int blue) {
+void Desktrunk::setLed(int red, int green, int blue)
+{
   _ledRed = red;
   _ledGreen = green;
   _ledBlue = blue;
@@ -82,12 +92,15 @@ void Desktrunk::setLed(int red, int green, int blue) {
 /**
  * Check trunk status
  */
-void Desktrunk::check() {
-  if (trunk.closing) {
+void Desktrunk::check()
+{
+  if (trunk.closing)
+  {
     Serial.println("check is closing");
     closeTrunk();
   }
-  if (trunk.opening) {
+  if (trunk.opening)
+  {
     Serial.println("check is opening");
     openTrunk();
   }
@@ -98,14 +111,17 @@ void Desktrunk::check() {
  * @param data Data from the NFC
  * @returns if access granted or not
  */
-bool Desktrunk::checkAccess(char * data) {
+bool Desktrunk::checkAccess(char *data)
+{
   MatchState ms;
-  ms.Target (data);
-  char result = ms.Match (_secret, 0);
+  ms.Target(data);
+  char result = ms.Match(_secret, 0);
   if (result == REGEXP_MATCHED)
   {
     return true;
-  } else {
+  }
+  else
+  {
     Serial.println("Nfc secret not allowed");
     ledError();
     return false;
@@ -115,9 +131,11 @@ bool Desktrunk::checkAccess(char * data) {
 /**
  * Start closing trunk
  */
-void Desktrunk::closingTrunk() {
+void Desktrunk::closingTrunk()
+{
   digitalWrite(_ledGreen, HIGH);
-  if (!trunk.closing) {
+  if (!trunk.closing)
+  {
     Serial.print("Closing trunk");
     trunk.closing = true;
   }
@@ -126,8 +144,10 @@ void Desktrunk::closingTrunk() {
 /**
  * Close trunk
  */
-void Desktrunk::closeTrunk() {
-  if (trunk.closing) {
+void Desktrunk::closeTrunk()
+{
+  if (trunk.closing)
+  {
     Serial.println("Close trunk");
     Serial.print(stepClose);
     _stepper.moveTo(true, stepClose);
@@ -147,9 +167,11 @@ void Desktrunk::closeTrunk() {
 /**
  * Start opening trunk
  */
-void Desktrunk::openingTrunk() {
+void Desktrunk::openingTrunk()
+{
   digitalWrite(_ledGreen, HIGH);
-  if (!trunk.opening) {
+  if (!trunk.opening)
+  {
     Serial.print("Opening trunk");
     trunk.opening = true;
   }
@@ -158,8 +180,10 @@ void Desktrunk::openingTrunk() {
 /**
  * Open trunk
  */
-void Desktrunk::openTrunk() {
-  if (trunk.opening) {
+void Desktrunk::openTrunk()
+{
+  if (trunk.opening)
+  {
     Serial.println("Open trunk:");
     Serial.print(stepOpen);
     // _stepper.moveTo(true, stepClose + 100);
@@ -180,7 +204,8 @@ void Desktrunk::openTrunk() {
 /**
  * Turn off stepper
  */
-void Desktrunk::turnOffStepper() {
+void Desktrunk::turnOffStepper()
+{
   Serial.println("Turn off stepper");
   digitalWrite(_stepperIN1, LOW);
   digitalWrite(_stepperIN2, LOW);
@@ -191,7 +216,8 @@ void Desktrunk::turnOffStepper() {
 /**
  * Led turn on when start
  */
-void Desktrunk::ledStart() {
+void Desktrunk::ledStart()
+{
   digitalWrite(_ledBlue, HIGH);
   delay(500);
   digitalWrite(_ledBlue, LOW);
@@ -215,7 +241,8 @@ void Desktrunk::ledStart() {
 /**
  * Led turn on when error
  */
-void Desktrunk::ledError() {
+void Desktrunk::ledError()
+{
   digitalWrite(_ledRed, HIGH);
   delay(2000);
   digitalWrite(_ledRed, LOW);
@@ -224,7 +251,8 @@ void Desktrunk::ledError() {
 /**
  * Led turn on when success
  */
-void Desktrunk::ledSuccess() {
+void Desktrunk::ledSuccess()
+{
   digitalWrite(_ledGreen, HIGH);
   delay(2000);
   digitalWrite(_ledGreen, LOW);

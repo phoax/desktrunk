@@ -25,26 +25,31 @@ const char *secret = "sesame";
 
 Desktrunk desktrunk;
 
-// NFC_Factorim nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS);
+NFC_Factorim nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS);
 
 /**
  * Callback for nfc
  */
 void nfcCallback()
 {
-  // char * data = nfc.readPassive();
+  char *data = nfc.readPassive();
 
-  // if (data) {
-  //   if (desktrunk.checkAccess(data)) {
-  //     if (desktrunk.trunk.closed == true) {
-  //       Serial.println("Access granted");
-  //       desktrunk.openingTrunk();
-  //     } else {
-  //       Serial.println("Access granted");
-  //       desktrunk.closingTrunk();
-  //     }
-  //   }
-  // }
+  if (data)
+  {
+    if (desktrunk.checkAccess(data))
+    {
+      if (desktrunk.trunk.closed == true)
+      {
+        Serial.println("Access granted");
+        desktrunk.openingTrunk();
+      }
+      else
+      {
+        Serial.println("Access granted");
+        desktrunk.closingTrunk();
+      }
+    }
+  }
 }
 
 /**
@@ -67,9 +72,9 @@ void setup(void)
   Serial.begin(9600);
   Serial.println("Desktrunk starting");
 
-  // nfc.begin();
-  // nfc.nfcInfo();
-  // nfc.SAMConfig();
+  nfc.begin();
+  nfc.nfcInfo();
+  nfc.SAMConfig();
 
   desktrunk.init();
   desktrunk.setSecret(secret);
