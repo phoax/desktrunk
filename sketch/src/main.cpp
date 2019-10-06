@@ -5,7 +5,7 @@
 #include <Thread.h>
 #include <ThreadController.h>
 
-const char * secret = "sesame";
+const char *secret = "sesame";
 
 #define INTERRUPT_PIN (21)
 
@@ -14,10 +14,10 @@ const char * secret = "sesame";
 #define STEPPER_IN3 (0)
 #define STEPPER_IN4 (4)
 
-#define PN532_SCK  (18)
+#define PN532_SCK (18)
 #define PN532_MOSI (23)
 #define PN532_MISO (19)
-#define PN532_SS   (5)
+#define PN532_SS (5)
 
 #define LED_RED (27)
 #define LED_GREEN (26)
@@ -25,45 +25,51 @@ const char * secret = "sesame";
 
 Desktrunk desktrunk;
 
-NFC_Factorim nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS);
+// NFC_Factorim nfc(PN532_SCK, PN532_MISO, PN532_MOSI, PN532_SS);
 
 /**
  * Callback for nfc
  */
-void nfcCallback(){
-  char * data = nfc.readPassive();
+void nfcCallback()
+{
+  // char * data = nfc.readPassive();
 
-  if (data) {
-    if (desktrunk.checkAccess(data)) {
-      if (desktrunk.trunk.closed == true) {
-        Serial.println("Access granted");
-        desktrunk.openingTrunk();
-      } else {
-        Serial.println("Access granted");
-        desktrunk.closingTrunk();
-      }
-    }
-  }
+  // if (data) {
+  //   if (desktrunk.checkAccess(data)) {
+  //     if (desktrunk.trunk.closed == true) {
+  //       Serial.println("Access granted");
+  //       desktrunk.openingTrunk();
+  //     } else {
+  //       Serial.println("Access granted");
+  //       desktrunk.closingTrunk();
+  //     }
+  //   }
+  // }
 }
 
 /**
  * Closing front
  */
-void closingFront() {
-  if (desktrunk.trunk.closed) {
+void closingFront()
+{
+  if (desktrunk.trunk.closed)
+  {
     desktrunk.openingTrunk();
-  } else {
+  }
+  else
+  {
     desktrunk.closingTrunk();
   }
 }
 
-void setup(void) {
+void setup(void)
+{
   Serial.begin(9600);
   Serial.println("Desktrunk starting");
 
-  nfc.begin();
-  nfc.nfcInfo();
-  nfc.SAMConfig();
+  // nfc.begin();
+  // nfc.nfcInfo();
+  // nfc.SAMConfig();
 
   desktrunk.init();
   desktrunk.setSecret(secret);
@@ -76,10 +82,8 @@ void setup(void) {
   desktrunk.ledStart();
 }
 
-void loop(void) {
+void loop(void)
+{
   nfcCallback();
   desktrunk.check();
-  
-
-  
 }
